@@ -18,7 +18,6 @@ package composable
 
 import (
 	"flag"
-	"fmt"
 	"log"
 	"path/filepath"
 	"testing"
@@ -229,11 +228,11 @@ var _ = Describe("test Composable operations", func() {
 		//unstrObj.SetGroupVersionKind(gvkOut)
 		// First, the output object is created with defult values, after that we deploy the inputObject and will check
 		// that all Output object filed are updated.
-		By("check input object") // the object should not exsist
+		By("check that input object doesn't exist") // the object should not exist
 		unstrObj.SetGroupVersionKind(gvkIn)
 		Ω(test.GetUnstructuredObject(scontext, objNamespacednameIn, &unstrObj)()).Should(HaveOccurred())
 
-		By("check ouput object") // the object should not exsist, or we delete it
+		By("check that output object doesnt exist, and if does, remove it") // the object should not exist, or we delete it
 		unstrObj.SetGroupVersionKind(gvkOut)
 		err2 := test.GetUnstructuredObject(scontext, objNamespacednameOut, &unstrObj)()
 		if err2 == nil {
@@ -253,10 +252,10 @@ var _ = Describe("test Composable operations", func() {
 		Ω(ok).Should(BeTrue())
 
 		// Check some of default the values
-		By("first default intValue")
+		By("Check default intValue")
 		Ω(testSpec["intValue"]).Should(BeEquivalentTo(10))
 
-		By("default stringFromBase64")
+		By("Check default stringFromBase64")
 		Ω(testSpec["stringFromBase64"]).Should(Equal("default"))
 
 		By("Deploy input Object")
@@ -278,7 +277,6 @@ var _ = Describe("test Composable operations", func() {
 			return testSpec["intValue"].(int64), nil
 		}).Should(Equal(int64(12)))
 
-		fmt.Printf("\nSpec %v+\n", testSpec)
 		// Check other values
 		By("updated floatValue")
 		Ω(testSpec["floatValue"].(float64)).Should(BeEquivalentTo(23.5))
