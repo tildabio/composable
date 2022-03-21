@@ -65,8 +65,11 @@ jobs:
           kustomize build config/default \
             | sed "s#controller:latest#${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${RELEASE_VERSION}#g" \
             > manifests.yaml
+          kustomize build config/crd > crds.yaml
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: manifests.yaml
+          files: |
+            composable.yaml
+            crds.yaml
 
