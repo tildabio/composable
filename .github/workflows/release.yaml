@@ -63,7 +63,7 @@ jobs:
         run: |
           set -eu -o pipefail
           kustomize build config/default \
-            | sed "s#controller:latest#${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${RELEASE_VERSION}/#g" \
+            | sed "s#controller:latest#${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${RELEASE_VERSION}#g" \
             > manifests.yaml
       - name: Release
         uses: softprops/action-gh-release@v1
