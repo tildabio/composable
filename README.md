@@ -1,3 +1,5 @@
+> Note: this is a fork until we get this merged upstream or officially change maintainers. Readme will likely be outdated.
+
 [![Build Status](https://travis-ci.com/IBM/composable.svg?branch=master)](https://travis-ci.com/IBM/composable)
 [![Go Report Card](https://goreportcard.com/badge/github.com/IBM/composable)](https://goreportcard.com/report/github.com/IBM/composable)
 [![GoDoc](https://godoc.org/github.com/IBM/composable?status.svg)](https://godoc.org/github.com/IBM/composable)
